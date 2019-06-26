@@ -1,0 +1,35 @@
+Bootstrap: docker
+From: ubuntu:latest
+
+%post
+    apt-get update
+    apt-get -y install build-essential
+    apt-get -y install apt-utils
+    apt-get -y install make
+    apt-get -y install cmake
+    apt-get -y install wget
+    apt-get -y install flex
+    apt-get -y install automake
+    apt-get -y install autoconf
+    apt-get -y install autotools-dev
+    apt-get -y install libtool
+    apt-get -y install gcc
+    apt-get -y install libgfortran3
+    apt-get -y install gfortran
+    apt-get -y install python
+    apt-get -y install python-pip
+    DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
+    apt-get -y install python-tk
+    export TERM=xterm
+    apt-get install -y linux-headers-generic
+
+    # openmpi
+    #apt-get update
+    apt-get -y install openmpi-bin
+    apt-get -y install openmpi-doc
+    apt-get -y install libopenmpi-dev
+
+    pip install mpi4py numpy scipy matplotlib
+
+    apt-get -y install git
+    git clone https://github.com/LLNL/pyranda && cd pyranda && python setup.py install
